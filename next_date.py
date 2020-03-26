@@ -55,5 +55,33 @@ def nextDate(date):
     if day == 31 and month in months_with_30_days:
         return "ERROR: This month only has 30 days"
 
+    """ Checking for end of months """
+    if day == 28 and month == 2 and leap_year is True:
+        day += 1
+    elif day == 28 and month == 2 and leap_year is False:
+        day = 1
+        month += 1
 
+    if (day == 30 and month in months_with_30_days) or (day == 31 and month in months_with_31_days):
+        day = 1
+        month += 1
 
+    if day == 31 and month == 12:
+        year += 1
+
+    """ Creating result """
+    if month < 10:
+        next_date += '0' + str(month)
+    else:
+        next_date += str(month)
+
+    next_date += '/'
+
+    if day < 10:
+        next_date += '0' + str(day)
+    else:
+        next_date += str(day)
+
+    next_date += '/' + str(year)
+
+    return next_date
