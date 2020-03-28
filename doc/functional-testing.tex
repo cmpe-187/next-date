@@ -166,6 +166,223 @@ TC & Test Value & Expected Result                                  & EC-15      
 
 \newpage
 \subsection{Test Cases for Boundary Value Analysis}
+In order to identify test cases for boundary value analysis (BVA), the following strategy is used: Since ECs specify ranges, test cases are constructed by considering the boundary points of the range and points just beyond the boundaries of the range.
+
+\subsubsection{EC-01: $01 \leq MM \leq 12$}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                              \\ \hline
+01 & 00/01/2000 & ERROR: The month needs to be between 1 to 12 \\ \hline
+02 & 01/01/2000 & 01/02/2000                                   \\ \hline
+03 & 02/01/2000 & 02/02/2000                                   \\ \hline
+04 & 11/01/2000 & 11/02/2000                                   \\ \hline
+05 & 12/01/2000 & 12/02/2000                                   \\ \hline
+06 & 13/01/2000 & ERROR: The month needs to be between 1 to 12 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-02: $MM < 01$}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                              \\ \hline
+01 & 00/01/2000 & ERROR: The month needs to be between 1 to 12 \\ \hline
+02 & 01/01/2000 & 01/02/2000                                   \\ \hline
+03 & 02/01/2000 & 02/02/2000                                   \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-03: $12 < MM$}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                              \\ \hline
+01 & 11/01/2000 & 11/02/2000                                   \\ \hline
+02 & 12/01/2000 & 12/02/2000                                   \\ \hline
+03 & 13/01/2000 & ERROR: The month needs to be between 1 to 12 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-04: $01 \leq DD \leq 28$ (MM = 2, YY is not a leap year)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            \\ \hline
+01 & 02/00/1999 & ERROR: The day needs to be between 1 to 28 \\ \hline
+02 & 02/01/1999 & 02/02/1999                                 \\ \hline
+03 & 02/02/1999 & 02/03/1999                                 \\ \hline
+04 & 02/27/1999 & 02/28/1999                                 \\ \hline
+05 & 02/28/1999 & 03/01/1999                                 \\ \hline
+06 & 02/29/1999 & ERROR: This year isn't a leap year         \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-05: $DD < 01$ (MM = 2, YY is not a leap year)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            \\ \hline
+01 & 02/00/1999 & ERROR: The day needs to be between 1 to 28 \\ \hline
+02 & 02/01/1999 & 02/02/1999                                 \\ \hline
+03 & 02/02/1999 & 02/03/1999                                 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-06: $28 < DD$ (MM = 2, YY is not a leap year)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+04 & 02/27/1999 & 02/28/1999                                 \\ \hline
+05 & 02/28/1999 & 03/01/1999                                 \\ \hline
+06 & 02/29/1999 & ERROR: This year isn't a leap year         \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-07: $01 \leq DD \leq 29$ (MM = 2, YY is a leap year)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            \\ \hline
+01 & 02/00/2000 & ERROR: The day needs to be between 1 to 29 \\ \hline
+02 & 02/01/2000 & 02/02/2000                                 \\ \hline
+03 & 02/02/2000 & 02/03/2000                                 \\ \hline
+04 & 02/28/2000 & 02/29/2000                                 \\ \hline
+05 & 02/29/2000 & 03/01/2000                                 \\ \hline
+06 & 02/30/2000 & ERROR: The day needs to be between 1 to 29 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-08: $DD < 01$ (MM = 2, YY is a leap year)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            \\ \hline
+01 & 02/00/2000 & ERROR: The day needs to be between 1 to 29 \\ \hline
+02 & 02/01/2000 & 02/02/2000                                 \\ \hline
+03 & 02/02/2000 & 02/03/2000                                 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-09: $29 < DD$ (MM = 2, YY is a leap year)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            \\ \hline
+01 & 02/28/2000 & 02/29/2000                                 \\ \hline
+02 & 02/29/2000 & 03/01/2000                                 \\ \hline
+03 & 02/30/2000 & ERROR: The day needs to be between 1 to 29 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-10: $01 \leq DD \leq 30$ (MM = 4, 6, 9, or 11)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            \\ \hline
+01 & 04/00/2000 & ERROR: The day needs to be between 1 to 30 \\ \hline
+02 & 04/01/2000 & 04/02/2000                                 \\ \hline
+03 & 04/02/2000 & 04/03/2000                                 \\ \hline
+04 & 04/29/2000 & 04/30/2000                                 \\ \hline
+05 & 04/30/2000 & 05/01/2000                                 \\ \hline
+06 & 04/31/2000 & ERROR: The day needs to be between 1 to 30 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-11: $DD < 01$ (MM = 4, 6, 9, or 11)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            \\ \hline
+01 & 04/00/2000 & ERROR: The day needs to be between 1 to 30 \\ \hline
+02 & 04/01/2000 & 04/02/2000                                 \\ \hline
+03 & 04/02/2000 & 04/03/2000                                 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-12: $30 < DD$(MM = 4, 6, 9, or 11)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            \\ \hline
+01 & 04/29/2000 & 04/30/2000                                 \\ \hline
+02 & 04/30/2000 & 05/01/2000                                 \\ \hline
+03 & 04/31/2000 & ERROR: The day needs to be between 1 to 30 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-13: $01 \leq DD \leq 31$ (MM = 1, 3, 5, 7, 8, 10, or 12)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            \\ \hline
+01 & 01/00/2000 & ERROR: The day needs to be between 1 to 31 \\ \hline
+02 & 01/01/2000 & 01/02/2000                                 \\ \hline
+03 & 01/02/2000 & 01/03/2000                                 \\ \hline
+04 & 01/30/2000 & 01/31/2000                                 \\ \hline
+05 & 01/31/2000 & 02/01/2000                                 \\ \hline
+06 & 01/32/2000 & ERROR: The day needs to be between 1 to 31 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-14: $DD < 01$ (MM = 1, 3, 5, 7, 8, 10, or 12)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            \\ \hline
+01 & 01/00/2000 & ERROR: The day needs to be between 1 to 31 \\ \hline
+02 & 01/01/2000 & 01/02/2000                                 \\ \hline
+03 & 01/02/2000 & 01/03/2000                                 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-15: $31 < DD$ (MM = 1, 3, 5, 7, 8, 10, or 12)}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            \\ \hline
+01 & 01/30/2000 & 01/31/2000                                 \\ \hline
+02 & 01/31/2000 & 02/01/2000                                 \\ \hline
+03 & 01/32/2000 & ERROR: The day needs to be between 1 to 31 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-16: $1900 \leq YYYY \leq 2099$}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                                  \\ \hline
+01 & 01/01/1899 & ERROR: The year needs to be between 1900 to 2099 \\ \hline
+02 & 01/01/1900 & 01/02/1900                                       \\ \hline
+03 & 01/01/1901 & 01/02/1901                                       \\ \hline
+04 & 01/01/2098 & 01/02/2098                                       \\ \hline
+05 & 01/01/2099 & 01/02/2099                                       \\ \hline
+06 & 01/01/2100 & ERROR: The year needs to be between 1900 to 2099 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-17: $YYYY < 1900$}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                                  \\ \hline
+01 & 01/01/1899 & ERROR: The year needs to be between 1900 to 2099 \\ \hline
+02 & 01/01/1900 & 01/02/1900                                       \\ \hline
+03 & 01/01/1901 & 01/02/1901                                       \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{EC-18: $2099 < YYYY$}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                                  \\ \hline
+01 & 01/01/2098 & 01/02/2098                                       \\ \hline
+02 & 01/01/2099 & 01/02/2099                                       \\ \hline
+03 & 01/01/2100 & ERROR: The year needs to be between 1900 to 2099 \\ \hline
+\end{tabular}
+\end{table}
+
 \subsection{Test Cases for Random Testing}
 
 \end{document} 
