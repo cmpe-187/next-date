@@ -110,48 +110,61 @@ Valid Input ECs: EC-01, EC-04, EC-07, EC-10, EC-13, EC-16
 
 \begin{table}[!htb]
 \centering
-\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 \hline
-TC \# & TC         & EC-01      & EC-04      & EC-07      & EC-10      & EC-13      & EC-16      \\ \hline
-01   & 02/01/1999 & \checkmark & \checkmark &            &            &            & \checkmark \\ \hline
-02   & 02/01/2000 & \checkmark &            & \checkmark &            &            & \checkmark \\ \hline
-03   & 04/01/2000 & \checkmark &            &            & \checkmark &            & \checkmark \\ \hline
-04   & 01/01/2000 & \checkmark &            &            &            & \checkmark & \checkmark \\ \hline
+TC & Test Value & Expected Result & EC-01      & EC-04      & EC-07      & EC-10      & EC-13      & EC-16      \\ \hline
+01 & 02/01/1999 & 02/02/1999      & \checkmark & \checkmark &            &            &            & \checkmark \\ \hline
+02 & 02/01/2000 & 02/02/2000      & \checkmark &            & \checkmark &            &            & \checkmark \\ \hline
+03 & 04/01/2000 & 04/02/2000      & \checkmark &            &            & \checkmark &            & \checkmark \\ \hline
+04 & 01/01/2000 & 01/02/2000      & \checkmark &            &            &            & \checkmark & \checkmark \\ \hline
 \end{tabular}
 \end{table}
-	
+
+\newpage	
 \subsubsection{Test Cases for ECs with Invalid Input}
 Invalid Input ECs: EC-02, EC-03, EC-05, EC-06, EC-08, EC-09, EC-11, EC-12, EC-14 EC-15, EC-17, EC-18
 
 \begin{table}[!htb]
-\centering
-\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|}
 \hline
-TC \# & TC         & EC-02      & EC-03      & EC-05      & EC-06      & EC-08      & EC-09      \\ \hline
-05    & 00/01/2000 & \checkmark &            &            &            &            &            \\ \hline
-06    & 13/01/2000 &            & \checkmark &            &            &            &            \\ \hline
-07    & 02/00/1999 &            &            & \checkmark &            &            &            \\ \hline
-08    & 02/29/1999 &            &            &            & \checkmark &            &            \\ \hline
-09    & 02/00/2000 &            &            &            &            & \checkmark &            \\ \hline
-10    & 02/30/2000 &            &            &            &            &            & \checkmark \\ \hline
+TC & Test Value & Expected Result                              & EC-02      & EC-03      & EC-05      \\ \hline
+05 & 00/01/2000 & ERROR: The month needs to be between 1 to 12 & \checkmark &            &            \\ \hline
+06 & 13/01/2000 & ERROR: The month needs to be between 1 to 12 &            & \checkmark &            \\ \hline
+07 & 02/00/1999 & ERROR: The day needs to be between 1 to 28   &            &            & \checkmark \\ \hline
 \end{tabular}
 \end{table}
 
 \begin{table}[!htb]
-\centering
-\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|}
 \hline
-TC \# & TC         & EC-11      & EC-12      & EC-14      & EC-15      & EC-17      & EC-18      \\ \hline
-11    & 04/00/2000 & \checkmark &            &            &            &            &            \\ \hline
-12    & 04/31/2000 &            & \checkmark &            &            &            &            \\ \hline
-13    & 01/00/2000 &            &            & \checkmark &            &            &            \\ \hline
-14    & 01/32/2000 &            &            &            & \checkmark &            &            \\ \hline
-15    & 01/01/1899 &            &            &            &            & \checkmark &            \\ \hline
-16    & 01/01/2100 &            &            &            &            &            & \checkmark \\ \hline
+TC & Test Value & Expected Result                            & EC-06      & EC-08      & EC-09      \\ \hline
+08 & 02/29/1999 & ERROR: This year isn't a leap year         & \checkmark &            &            \\ \hline
+09 & 02/00/2000 & ERROR: The day needs to be between 1 to 29 &            & \checkmark &            \\ \hline
+10 & 02/30/2000 & ERROR: The day needs to be between 1 to 29 &            &            & \checkmark \\ \hline
 \end{tabular}
 \end{table}
 
+\begin{table}[!htb]
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+TC & Test Value & Expected Result                            & EC-11      & EC-12      & EC-14      \\ \hline
+11 & 04/00/2000 & ERROR: The day needs to be between 1 to 30 & \checkmark &            &            \\ \hline
+12 & 04/31/2000 & ERROR: This month only has 30 days         &            & \checkmark &            \\ \hline
+13 & 01/00/2000 & ERROR: The day needs to be between 1 to 30 &            &            & \checkmark \\ \hline
+\end{tabular}
+\end{table}
 
+\begin{table}[!htb]
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+TC & Test Value & Expected Result                                  & EC-15      & EC-17      & EC-18      \\ \hline
+14 & 01/32/2000 & ERROR: The day needs to be between 1 to 31       & \checkmark &            &            \\ \hline
+15 & 01/01/1899 & ERROR: The year needs to be between 1900 to 2099 &            & \checkmark &            \\ \hline
+16 & 01/01/2100 & ERROR: The year needs to be between 1900 to 2099 &            &            & \checkmark \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
 \subsection{Test Cases for Boundary Value Analysis}
 \subsection{Test Cases for Random Testing}
 
