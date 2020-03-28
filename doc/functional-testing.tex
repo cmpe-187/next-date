@@ -384,5 +384,29 @@ TC & Test Value & Expected Result                                  \\ \hline
 \end{table}
 
 \subsection{Test Cases for Random Testing}
+Typically, in random testing, test inputs are randomly generated according to some operational profile. In this case, we generate 16 test cases using a random number generators via \texttt{random.org}. MM is limited to the range $[00, 13]$, DD $[00, 32]$, and YYYY $[1899, 2100]$.
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+TC & Test Value & Expected Result                              \\ \hline
+01 & 13/15/2040 & ERROR: The month needs to be between 1 to 12 \\ \hline
+02 & 00/31/1909 & ERROR: The month needs to be between 1 to 12 \\ \hline
+03 & 06/08/2053 & 06/08/2053                                   \\ \hline
+04 & 01/05/1986 & 01/06/1986                                   \\ \hline
+05 & 04/23/1977 & 04/24/1977                                   \\ \hline
+06 & 13/10/2024 & ERROR: The month needs to be between 1 to 12 \\ \hline
+07 & 11/27/1955 & 11/28/1955                                   \\ \hline
+08 & 13/03/2084 & ERROR: The month needs to be between 1 to 12 \\ \hline
+09 & 11/08/2059 & 11/07/2059                                   \\ \hline
+10 & 12/04/1912 & 12/05/1912                                   \\ \hline
+11 & 11/14/1902 & 11/15/1902                                   \\ \hline
+12 & 10/15/1972 & 10/16/1972                                   \\ \hline
+13 & 13/21/1985 & ERROR: The month needs to be between 1 to 12 \\ \hline
+14 & 11/27/2039 & 11/28/2039                                   \\ \hline
+15 & 08/29/2035 & 08/30/2035                                   \\ \hline
+16 & 00/02/2031 & ERROR: The month needs to be between 1 to 12 \\ \hline
+\end{tabular}
+\end{table}
 
 \end{document} 
