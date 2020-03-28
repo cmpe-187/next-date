@@ -52,7 +52,54 @@
 \maketitle
 
 \section{Input Domain}
+The input domain of the unit \texttt{nextDate} consists of dates formatted as follows: $DD/MM/YYYY$. For months, $MM$, the input condition specifies the range $[1, 12]$. If $MM = 2$ and the year is not a leap year, then the input condition range for dates, $DD$ is $[1, 28]$ (a year is a leap year if divisible by 4 and not divisible by 100 (unless divisible by 400)). If $MM = 2$  and the year is a leap year, then the input condition range for $DD$ is $[1, 29]$. If $MM = 4, 6, 9,$ or $11$, then the input condition range for $DD$ is $[1, 30]$. If $MM = 1, 3, 5, 7, 8, 10,$ or $12$, then the input condition range for $DD$ is $[1, 31]$.
+
 \section{Equivalence Classes}
+In order to identify equivalence classes (ECs), the following strategy was used: input conditions typically specified a range $[a, b]$, thus one EC was identified for $a \leq X \leq b$, and two others were identified for $X < a$ and $b < X$.
+
+\subsection{Months}
+	\begin{itemize}
+		\item{EC-01: $01 \leq MM \leq 12$}
+		\item{EC-02: $MM < 01$}
+		\item{EC-03: $12 < MM$}
+	\end{itemize}
+
+\subsection{Dates}
+\subsubsection{MM = 2, YY is not a leap year}
+	\begin{itemize}
+		\item{EC-04: $01 \leq DD \leq 28$}
+		\item{EC-05: $DD < 01$}
+		\item{EC-06: $28 < DD$}
+	\end{itemize}
+
+\subsubsection{MM = 2, YY is a leap year}
+	\begin{itemize}
+		\item{EC-07: $01 \leq DD \leq 29$}
+		\item{EC-08: $DD < 01$}
+		\item{EC-09: $29 < DD$}
+	\end{itemize}	
+	
+\subsubsection{MM = 4, 6, 9, or 11}
+	\begin{itemize}
+		\item{EC-10: $01 \leq DD \leq 30$}
+		\item{EC-11: $DD < 01$}
+		\item{EC-12: $30 < DD$}
+	\end{itemize}
+	
+\subsubsection{MM = 1, 3, 5, 7, 8, 10, or 12}
+	\begin{itemize}
+		\item{EC-13: $01 \leq DD \leq 31$}
+		\item{EC-14: $DD < 01$}
+		\item{EC-15: $31 < DD$}
+	\end{itemize}
+
+\subsection{Years}
+	\begin{itemize}
+		\item{EC-13: $1900 \leq YYYY \leq 2099$}
+		\item{EC-14: $YYYY < 1900$}
+		\item{EC-15: $2099 < YYYY$}
+	\end{itemize}
+
 \section{Test Cases}
 \subsection{Test Cases from Equivalence Classes}
 \subsection{Test Cases for Boundary Value Analysis}
